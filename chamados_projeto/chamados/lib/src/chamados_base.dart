@@ -1,22 +1,21 @@
-import 'dart:io';
+import 'package:usuarios/usuarios.dart';
 
-class UsuarioChamado { // extends Usuario
-
-  final int id;
-  final String nome;
+// Classe de usuário que herda da classe de usuári odo grupo 1 (Marcos)
+class UsuarioChamado extends Usuario {
   final int matricula;
-  final String senha;
   final String campus;
   final List<Chamado> chamados;
 
-  const UsuarioChamado({
-
-    required this.id,
-    required this.nome,
+  UsuarioChamado({
+    required super.id,
+    required super.nome,
+    required super.email,
+    required super.dataCadastro,
     required this.matricula,
-    required this.senha,
+    required super.senha,
     required this.campus,
     required this.chamados,
+    List<String>? permissoes
   });
 }
 
