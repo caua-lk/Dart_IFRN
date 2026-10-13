@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:exemplo/exemplo.dart';
-
+import 'package:usuarios/usuarios.dart';
 
 const String version = '0.0.1';
 
@@ -8,10 +8,23 @@ void main(List<String> arguments) {
   List<Map<String,dynamic>> opcoes = [];
   
   // Exemplos de usuários com permissões diferentes
-  // TODO: Importar a classe Usuario do pacote implementado pelo Grupo 1.
   // Estou usando um Map para simular a classe Usuario, mas você deve usar a classe real.
-  Map<String, dynamic> usuario1 = {'nome': 'Fulano', 'permissoes': []};
-  Map<String, dynamic> usuario2 = {'nome': 'Beltrano', 'permissoes': ['admin']};
+  Usuario usuario1 = Usuario(
+    id: 1,
+    nome: 'Fulano',
+    email: 'fulano@gmail.com',
+    senha: 'abc123',
+    dataCadastro: DateTime(2026, 10, 12),
+    permissoes: []
+  );
+  Usuario usuario2 = Usuario(
+    id: 2,
+    nome: 'Belttrano',
+    email: 'belttrano@gmail.com',
+    senha: 'abc123',
+    dataCadastro: DateTime(2026, 10, 12),
+    permissoes: ['admin']
+  );
 
   // Usuário logado
   // TODO: Você deve adaptar isso para usar a classe Usuario real.
