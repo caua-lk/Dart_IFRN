@@ -27,6 +27,8 @@ class Chamado {
   List<String> interessados;
   final String status;
 
+  static List<Chamado> instancias = [];
+
   Chamado({
     required this.id,
     required this.descricao,
@@ -34,5 +36,35 @@ class Chamado {
     required this.campus,
     required this.interessados,
     this.status = 'Pendente'
-  });
+  }) {
+    instancias.add(this);
+  }
+
+  static List<Map<String, dynamic>> menu = [
+    { 'titulo': 'Listar chamados', 'permissao': null, 'metodo': listar },
+    { 'titulo': 'Abrir chamado', 'permissao': 'admin', 'metodo': cadastrar },
+    { 'titulo': 'Fechar chamado', 'permissao': 'admin', 'metodo': excluir },
+  ];
+
+  static void listar() {
+    if (instancias.isEmpty) {
+      print('Você não possui chamados registrados.');
+    } else {
+      for (final Chamado chamado in instancias) {
+        String textoInteressados = '\n';
+        for (final usuario in chamado.interessados) {
+          textoInteressados += '$usuario\n';
+        }
+
+        print('''
+        -------------------
+        ${chamado.descricao} (${chamado.status})
+        Usuário: ${chamado.usuario}
+        Campus: ${chamado.campus}
+        Interessados: $textoInteressados
+        -------------------
+        ''');
+      }
+    }
+  }
 }
