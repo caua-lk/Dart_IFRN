@@ -53,7 +53,7 @@ void main(List<String> arguments) {
       // acesso negado e continua o loop
       // TODO: Você deve adaptar a condição do if abaixo à classe Usuario real.
       if (opcoes[escolha]['permissao'] != null && 
-          !usuario['permissoes'].contains(opcoes[escolha]['permissao'])) {
+          !usuario.permissoes.contains(opcoes[escolha]['permissao'])) {
         print('Acesso negado. Você não tem permissão para fazer isso.\n');
         continue;
       }
