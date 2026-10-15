@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:usuarios/usuarios.dart';
 
 // Classe de usuário que herda da classe de usuári odo grupo 1 (Marcos)
@@ -19,7 +20,7 @@ class UsuarioChamado extends Usuario {
   });
 }
 
-class Chamado {
+class ChamadoModel {
   final int id;
   String descricao;
   final UsuarioChamado usuario;
@@ -27,9 +28,9 @@ class Chamado {
   List<String> interessados;
   final String status;
 
-  static List<Chamado> instancias = [];
+  static List<ChamadoModel> instancias = [];
 
-  Chamado({
+  ChamadoModel({
     required this.id,
     required this.descricao,
     required this.usuario,
@@ -39,18 +40,20 @@ class Chamado {
   }) {
     instancias.add(this);
   }
+}
 
+class Chamado {
   static List<Map<String, dynamic>> menu = [
     { 'titulo': 'Listar chamados', 'permissao': null, 'metodo': listar },
-    { 'titulo': 'Abrir chamado', 'permissao': 'admin', 'metodo': cadastrar },
-    { 'titulo': 'Fechar chamado', 'permissao': 'admin', 'metodo': excluir },
+    { 'titulo': 'Abrir chamado', 'permissao': null, 'metodo': cadastrar },
+    { 'titulo': 'Fechar chamado', 'permissao': null, 'metodo': excluir },
   ];
 
-  static void listar() {
-    if (instancias.isEmpty) {
+  static void listar(UsuarioChamado usuario) {
+    if (ChamadoModel.instancias.isEmpty) {
       print('Você não possui chamados registrados.');
     } else {
-      for (final Chamado chamado in instancias) {
+      for (final chamado in ChamadoModel.instancias) {
         String textoInteressados = '\n';
         for (final usuario in chamado.interessados) {
           textoInteressados += '$usuario\n';
@@ -66,5 +69,32 @@ class Chamado {
         ''');
       }
     }
+  }
+
+  static void cadastrar(UsuarioChamado usuario) {
+    print('Insira um campus para o chamado:');
+    String? campus = stdin.readLineSync();
+    if (campus == null) {
+      print('É preciso informar um campus para abrir chamado.');
+      return;
+    }
+
+    print('Insira a descrição do chamado');
+    String descricao = stdin.readLineSync() ?? 'Sem descrição';
+
+    print('Insira o nome dos interessados, separados por vírgula:');
+    String? interessadosTexto = stdin.readLineSync();
+    List<String> interessados = [];
+    if (interessadosTexto != null) {
+      interessados = interessadosTexto.trim().split(',');
+    }
+
+    ChamadoModel chamado = ChamadoModel(
+      id: 1,
+      descricao: descricao,
+      usuario: usuario,
+      campus: campus,
+      interessados: interessados
+    );
   }
 }
