@@ -89,8 +89,8 @@ class Chamado {
       interessados = interessadosTexto.trim().split(',');
     }
 
-    ChamadoModel chamado = ChamadoModel(
-      id: 1,
+    ChamadoModel(
+      id: ChamadoModel.instancias.length + 1,
       descricao: descricao,
       usuario: usuario,
       campus: campus,
