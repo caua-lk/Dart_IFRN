@@ -97,4 +97,26 @@ class Chamado {
       interessados: interessados
     );
   }
+
+  static void excluir(UsuarioChamado usuario) {
+    print('Insira o id do chamado que deseja fechar:');
+    int? id = int.tryParse(stdin.readLineSync() ?? '');
+    if (id == null) {
+      print('Valor inválido digitado.');
+      return;
+    }
+    for (final chamado in ChamadoModel.instancias) {
+      if (chamado.id == id) {
+        if (chamado.usuario != usuario) {
+          print('Você não tem permissão para fechar este chamado.');
+          return;
+        }
+        ChamadoModel.instancias.remove(chamado);
+        print('Chamado fechado com sucesso.');
+        return;
+      }
+    }
+    print('Nenhum chamado com este id foi encontrado.');
+    return;
+  }
 }
