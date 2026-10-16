@@ -22,7 +22,7 @@ class UsuarioChamado extends Usuario {
   }
 }
 
-class ChamadoModel {
+class Chamado {
   final int id;
   String descricao;
   final UsuarioChamado usuario;
@@ -30,9 +30,9 @@ class ChamadoModel {
   List<String> interessados;
   final String status;
 
-  static List<ChamadoModel> instancias = [];
+  static List<Chamado> instancias = [];
 
-  ChamadoModel({
+  Chamado({
     required this.id,
     required this.descricao,
     required this.usuario,
@@ -44,7 +44,7 @@ class ChamadoModel {
   }
 }
 
-class Chamado {
+class ChamadoController {
   static List<Map<String, dynamic>> menu = [
     { 'titulo': 'Listar chamados', 'permissao': null, 'metodo': listar },
     { 'titulo': 'Abrir chamado', 'permissao': null, 'metodo': cadastrar },
@@ -53,10 +53,10 @@ class Chamado {
   ];
 
   static void listar(UsuarioChamado usuario) {
-    if (ChamadoModel.instancias.isEmpty) {
+    if (Chamado.instancias.isEmpty) {
       print('Você não possui chamados registrados.');
     } else {
-      for (final chamado in ChamadoModel.instancias) {
+      for (final chamado in Chamado.instancias) {
         String textoInteressados = '\n';
         for (final usuario in chamado.interessados) {
           textoInteressados += '$usuario\n';
@@ -92,8 +92,8 @@ class Chamado {
       interessados = interessadosTexto.trim().split(',');
     }
 
-    ChamadoModel(
-      id: ChamadoModel.instancias.length + 1,
+    Chamado(
+      id: Chamado.instancias.length + 1,
       descricao: descricao,
       usuario: usuario,
       campus: campus,
@@ -108,13 +108,13 @@ class Chamado {
       print('Valor inválido digitado.');
       return;
     }
-    for (final chamado in ChamadoModel.instancias) {
+    for (final chamado in Chamado.instancias) {
       if (chamado.id == id) {
         if (chamado.usuario != usuario) {
           print('Você não tem permissão para fechar este chamado.');
           return;
         }
-        ChamadoModel.instancias.remove(chamado);
+        Chamado.instancias.remove(chamado);
         print('Chamado fechado com sucesso.');
         return;
       }
@@ -130,7 +130,7 @@ class Chamado {
       print('Valor inválido digitado.');
       return;
     }
-    for (final chamado in ChamadoModel.instancias) {
+    for (final chamado in Chamado.instancias) {
       if (chamado.id == id) {
         if (chamado.usuario != usuario) {
           print('Você não tem permissão para editar este chamado.');

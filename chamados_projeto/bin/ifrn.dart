@@ -33,7 +33,7 @@ void main(List<String> arguments) {
   // Usuário logado
   var usuario = usuario2;
 
-  opcoes += Chamado.menu;
+  opcoes += ChamadoController.menu;
 
   String? input;
   do {
