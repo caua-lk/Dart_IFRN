@@ -9,21 +9,27 @@ void main(List<String> arguments) {
   
   // Exemplos de usuários com permissões diferentes
   // Estou usando um Map para simular a classe Usuario, mas você deve usar a classe real.
-  Usuario usuario1 = Usuario(
+  Usuario usuario1 = UsuarioChamado(
     id: 1,
     nome: 'Fulano',
     email: 'fulano@gmail.com',
     senha: 'abc123',
     dataCadastro: DateTime(2026, 10, 12),
-    permissoes: []
+    permissoes: [],
+    matricula: 20241101110099,
+    campus: 'Caicó',
+    chamados: []
   );
-  Usuario usuario2 = Usuario(
+  Usuario usuario2 = UsuarioChamado(
     id: 2,
     nome: 'Belttrano',
     email: 'belttrano@gmail.com',
     senha: 'abc123',
     dataCadastro: DateTime(2026, 10, 12),
-    permissoes: ['admin']
+    permissoes: ['admin'],
+    matricula: 20241101110098,
+    campus: 'Natal Zona Norte',
+    chamados: []
   );
 
   // Usuário logado

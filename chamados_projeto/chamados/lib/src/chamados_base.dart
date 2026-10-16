@@ -157,6 +157,7 @@ class Chamado {
             List<String> interessados = interessadosTexto.trim().split(',');
             chamado.interessados = interessados;
           }
+          return;
         } else if (opcao != 'n') {
           print('Opção inválida digitada.');
           return;
