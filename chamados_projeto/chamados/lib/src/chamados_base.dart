@@ -47,6 +47,7 @@ class Chamado {
     { 'titulo': 'Listar chamados', 'permissao': null, 'metodo': listar },
     { 'titulo': 'Abrir chamado', 'permissao': null, 'metodo': cadastrar },
     { 'titulo': 'Fechar chamado', 'permissao': null, 'metodo': excluir },
+    { 'titulo': 'Editar chamado', 'permissao': null, 'metodo': editar },
   ];
 
   static void listar(UsuarioChamado usuario) {
@@ -114,6 +115,52 @@ class Chamado {
         ChamadoModel.instancias.remove(chamado);
         print('Chamado fechado com sucesso.');
         return;
+      }
+    }
+    print('Nenhum chamado com este id foi encontrado.');
+    return;
+  }
+
+  static void editar(UsuarioChamado usuario) {
+    print('Insira o id do chamado que deseja editar:');
+    int? id = int.tryParse(stdin.readLineSync() ?? '');
+    if (id == null) {
+      print('Valor inválido digitado.');
+      return;
+    }
+    for (final chamado in ChamadoModel.instancias) {
+      if (chamado.id == id) {
+        if (chamado.usuario != usuario) {
+          print('Você não tem permissão para editar este chamado.');
+          return;
+        }
+        print('Deseja alterar a descrição (s/n)?');
+        String? opcao = stdin.readLineSync();
+        if (opcao == 's') {
+          print('Insira a nova descrição:');
+          String? novaDescricao = stdin.readLineSync();
+          if (novaDescricao == null) {
+            chamado.descricao = 'Sem descrição';
+          } else {
+            chamado.descricao = novaDescricao;
+          }
+        } else if (opcao != 'n') {
+          print('Opção inválida digitada.');
+          return;
+        }
+        print('Deseja alterar a lista de interessados (s/n)?');
+        opcao = stdin.readLineSync();
+        if (opcao == 's') {
+          print('Insira o nome dos interessados, separados por vírgula:');
+          String? interessadosTexto = stdin.readLineSync();
+          if (interessadosTexto != null) {
+            List<String> interessados = interessadosTexto.trim().split(',');
+            chamado.interessados = interessados;
+          }
+        } else if (opcao != 'n') {
+          print('Opção inválida digitada.');
+          return;
+        }
       }
     }
     print('Nenhum chamado com este id foi encontrado.');
