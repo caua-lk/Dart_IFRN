@@ -17,8 +17,7 @@ void main(List<String> arguments) {
     dataCadastro: DateTime(2026, 10, 12),
     permissoes: [],
     matricula: 20241101110099,
-    campus: 'Caicó',
-    chamados: []
+    campus: 'Caicó'
   );
   Usuario usuario2 = UsuarioChamado(
     id: 2,
@@ -28,8 +27,7 @@ void main(List<String> arguments) {
     dataCadastro: DateTime(2026, 10, 12),
     permissoes: ['admin'],
     matricula: 20241101110098,
-    campus: 'Natal Zona Norte',
-    chamados: []
+    campus: 'Natal Zona Norte'
   );
 
   // Usuário logado

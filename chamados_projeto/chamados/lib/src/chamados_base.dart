@@ -5,7 +5,7 @@ import 'package:usuarios/usuarios.dart';
 class UsuarioChamado extends Usuario {
   final int matricula;
   final String campus;
-  final List<Chamado> chamados;
+  List<Chamado>? chamados;
 
   UsuarioChamado({
     required super.id,
@@ -15,9 +15,11 @@ class UsuarioChamado extends Usuario {
     required this.matricula,
     required super.senha,
     required this.campus,
-    required this.chamados,
+    // required this.chamados,
     List<String>? permissoes
-  });
+  }) {
+    chamados = [];
+  }
 }
 
 class ChamadoModel {
