@@ -1,10 +1,8 @@
 import 'dart:io';
 
 /// Módulo exemplo.
-/// TODO: Adapte para algo específico do seu módulo.
 class Exemplo {
   /// Menu de opções do módulo exemplo.
-  /// TODO: Adapte ao seu módulo, mas mantenha o nome da propriedade como `menu` para que o código do binário funcione corretamente.
   static List<Map<String, dynamic>> menu = [
     { 'titulo': 'Listar todas as informações cadastradas', 'permissao': null, 'metodo': listar },
     { 'titulo': 'Cadastrar informação', 'permissao': 'admin', 'metodo': cadastrar },

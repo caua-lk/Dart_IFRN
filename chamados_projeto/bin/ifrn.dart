@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:exemplo/exemplo.dart';
 import 'package:usuarios/usuarios.dart';
+import 'package:chamados/chamados.dart';
 
 const String version = '0.0.1';
 
@@ -27,11 +27,9 @@ void main(List<String> arguments) {
   );
 
   // Usuário logado
-  // TODO: Você deve adaptar isso para usar a classe Usuario real.
   var usuario = usuario2;
 
-  opcoes += Exemplo.menu;
-  // TODO: Adicionar opções do seu pacote aqui
+  opcoes += Chamado.menu;
 
   String? input;
   do {
@@ -51,7 +49,6 @@ void main(List<String> arguments) {
     } else if (escolha != null && escolha >= 0 && escolha < opcoes.length) {
       // Se é necessária uma permissão e o usuário não tem, exibe mensagem de
       // acesso negado e continua o loop
-      // TODO: Você deve adaptar a condição do if abaixo à classe Usuario real.
       if (opcoes[escolha]['permissao'] != null && 
           !usuario.permissoes.contains(opcoes[escolha]['permissao'])) {
         print('Acesso negado. Você não tem permissão para fazer isso.\n');
@@ -59,7 +56,7 @@ void main(List<String> arguments) {
       }
       // Se chegou aqui, tem permissão, então executa o método correspondente
       // à opção escolhida
-      opcoes[escolha]['metodo']();
+      opcoes[escolha]['metodo'](usuario);
     } else {
       print('Opção inválida.');
     }
